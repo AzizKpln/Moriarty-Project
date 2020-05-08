@@ -1,3 +1,4 @@
+apt-get install chromium -y
 pip3 install colored
 pip3 install requests
 pip3 install selenium

@@ -70,7 +70,9 @@ def name(phone_number,username,password):
             name=WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/main/div/div[1]/div[1]/header'))).text
             name=name.split("Add")
             name=name[0]
-
+            if "Is the name correct?" in name:
+                name=name.split("Is")
+                name=name[0]
             if name=="" or name==" ":
                 print(colored.red("[-]Recaptcha Error Please Change Your Ip And Try To Use The Tool Again"))
             print(colored.green("[+]This Phone Number Belongs To:%s"%str(name)))
@@ -97,7 +99,9 @@ def name(phone_number,username,password):
 
         name=name.split("Add")
         name=name[0]
-
+        if "Is the name correct?" in name:
+            name=name.split("Is")
+            name=name[0]
         if name=="" or name==" ":
             print(colored.red("[-]Recaptcha Error Please Change Your Ip And Try To Use The Tool Again"))
         return_option="[+]This Phone Number Belongs To:%s"%str(name)
@@ -168,7 +172,7 @@ with open("output/owner_of_number.txt","w+") as file:
 os.system("clear")
 
 print(colored.blue("Owner Name/Number Information:\n"))
-print(name(options.phone_number,options.mail_address,options.mail_password))
+name(options.phone_number,options.mail_address,options.mail_password)
 try:
     location_risk_number(options.phone_number)
 except:
