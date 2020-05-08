@@ -79,7 +79,7 @@ def cool_t():
     os.system(random.choice(liste))
     print("           ******************************************************************")
     print("                 #Github:https://www.github.com/AzizKpln")
-    print("                 #Facebook:https://www.facebook.com/aziz.kaplan.96387n")
+    print("                 #Facebook:https://www.facebook.com/aziz.kaplan.96387")
     print("                 #Instagram:https://www.instagram.com/aziz.kpln")
     print("                 #Youtube:Cybersploitable TR"+colors["END"])
     print(random_color+"           *******************************************************************")
