@@ -30,3 +30,7 @@
 # Sending Sms
 ![](images/4.png)
 * It is necessery to have an amazon aws account otherwise sms won't be sent.
+
+# Note
+* Please don't use your real gmail account open a fake account and don't add your phone number for better usage of the tool.
+* This tool will not steal your account. Codes are opensource you can check.
