@@ -20,6 +20,7 @@
 # Installation
 * chmod 755 install.sh
 * ./install.sh
+* pip3 install -r requiremenets.txt 
 
 # Usage
 ![](images/2.png)
