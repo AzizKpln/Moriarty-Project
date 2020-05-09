@@ -29,6 +29,7 @@ from risks_and_deep_search import deep_info1
 from risks_and_deep_search import deep_info2
 from risks_and_deep_search import deep_info3
 from send_sms import sms
+from owner import owner_sync
 def get_arguments():
     parser=optparse.OptionParser()
     parser.add_option("-m",dest="mail_address",help="Give The Gmail Address",action="store")
@@ -90,10 +91,10 @@ def name(phone_number,username,password):
                         file.write("\n[-]No Name Found For This Number!"+"\n--------------------------------------------------------------")
 
                 elif res=="Search limit exceeded":
-                    print("Search Limit Exceeded Please Use Another Gmail Account To Solve This Error!")
+                    print(colored.red("Search Limit Exceeded Please Use Another Gmail Account To Solve This Error!"))
 
             except:
-                pass
+                print(colored.red("[-]This Gmail Account Requires A Phone Number\n[-]Please Use Another Fake Gmail Account Without Phone Number To Solve This Error.\n[-]Or You Can Wait For 5-10 Min And You Can Try To Run The Script Again"))
     try:
         name=WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/main/div/div[1]/div[1]/header'))).text
 
@@ -122,7 +123,7 @@ def name(phone_number,username,password):
                 print("Search Limit Exceeded Please Use Another Gmail Account To Solve This Error!")
 
         except:
-            print(colored.red("[-]This Gmail Account Requires A Phone Number\n[-]Please Use Another Fake Gmail Account Without Phone Number To Solve This Error.\n[-]Or You Can Wait For 5-10 Min And You Can Try To Run The Script Again"))
+            pass
 
 def facebook_phone(phone_number):
     facebook.fb(phone_number)
@@ -155,6 +156,8 @@ def sms_go():
     amazon_key=input(colored.yellow("Input Your Amazon Key Here:"))
     secret_key=input(colored.yellow("Input Your Amazon Access Key Here:"))
     sms.sms_send(options.phone_number,msg,amazon_key,secret_key)
+def sync(phone_number):
+    owner_sync.sync(phone_number)
 options=get_arguments()
 
 
@@ -173,6 +176,11 @@ os.system("clear")
 
 print(colored.blue("Owner Name/Number Information:\n"))
 name(options.phone_number,options.mail_address,options.mail_password)
+try:
+    sync(options.phone_number)
+except:
+    print(colored.red("[-]Recaptcha Error Please Reset Your Modem Or Change Your Ip Address."))
+
 try:
     location_risk_number(options.phone_number)
 except:
