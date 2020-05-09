@@ -122,7 +122,7 @@ def name(phone_number,username,password):
                 print("Search Limit Exceeded Please Use Another Gmail Account To Solve This Error!")
 
         except:
-            pass
+            print(colored.red("[-]This Gmail Account Requires A Phone Number\n[-]Please Use Another Fake Gmail Account Without Phone Number To Solve This Error.\n[-]Or You Can Wait For 5-10 Min And You Can Try To Run The Script Again"))
 
 def facebook_phone(phone_number):
     facebook.fb(phone_number)
