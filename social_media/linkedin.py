@@ -32,7 +32,7 @@ def lnkd(phone_number):
     time.sleep(2)
 
     try:
-        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div/main/div[2]/form/div[3]/button'))).click()
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="app__container"]/main/div[2]/form/div[3]/button'))).click()
         name=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div/main/div[2]/form/div[2]/div"))).text
         print(colored.green("[+]This Phone Number Is  Connected To A Linkedin Account!"))
         with open("output/social_media_results.txt","a+") as file:
@@ -42,4 +42,4 @@ def lnkd(phone_number):
         print(colored.red("[-]This Phone Number Is Not Connected To Any Linkedin Account!"))
         with open("output/social_media_results.txt","a+") as file:
             file.write("\n[-]This Phone Number Is Not Connected To Any Linkedin Account!"+"\n--------------------------------------------------------------")
-    
+    time.sleep(1)
