@@ -6,3 +6,5 @@ unzip chromedriver_linux64.zip
 cp chromedriver path/
 rm chromedriver*
 pip3 install clint
+sudo apt-get install figlet
+pip3 install bs4
