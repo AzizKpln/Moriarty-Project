@@ -1,4 +1,4 @@
-apt-get install chromium -y
+sudo apt-get install chromium -y
 pip3 install colored
 pip3 install requests
 pip3 install selenium
@@ -8,4 +8,4 @@ unzip chromedriver_linux64.zip
 cp chromedriver path/
 rm chromedriver*
 pip3 install boto3
-
+pip3 install clint
