@@ -75,7 +75,7 @@ def cool_t():
     time.sleep(0.2)
     print(random_color+"""                   ███████            ,█          , ┌████████""")
     print(random_color+"""                   ███████▌  .      ,████┐       ^  █████████""")
-    print(random_color+"                                  Moriarty  v1.1")
+    print(random_color+"                                  Moriarty  v2.1")
     print(random_color)
     os.system(random.choice(liste))
     print("           ******************************************************************")
