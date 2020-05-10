@@ -3,4 +3,4 @@ phonenumbers==8.12.2
 boto3==1.13.4
 pyvirtualdisplay==0.2.5
 requests==2.22.0
-bs4==4.8.2
+
