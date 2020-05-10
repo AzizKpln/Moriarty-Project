@@ -1,4 +1,4 @@
-sudo apt-get update && sudo apt-get install python3-pip
+sudo apt-get update && sudo apt-get install python3-pip -y
 sudo apt-get install chromium -y
 pip3 install colored
 wget https://chromedriver.storage.googleapis.com/81.0.4044.69/chromedriver_linux64.zip
