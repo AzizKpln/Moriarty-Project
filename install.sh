@@ -9,3 +9,4 @@ rm chromedriver*
 pip3 install clint
 sudo apt-get install figlet
 pip3 install bs4
+pip3 install certifi
