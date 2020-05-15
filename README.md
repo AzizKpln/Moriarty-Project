@@ -1,4 +1,5 @@
 # Moriarty-Project
+
 # ![](images/1.png)
 # What IS Moriarty?
 - Advanced Information Gathering And Osint Tool
@@ -17,6 +18,11 @@
 ->Tries To Find Comments About Phone Number
 
 ->Sends Sms To Phone Number With Amazon Aws
+# TO Contact
+
+Facebook:https://www.facebook.com/aziz.kaplan.96387
+
+Instagram:https://www.instagram.com/aziz.kpln
 # Installation
 * chmod 755 install.sh
 * ./install.sh
