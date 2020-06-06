@@ -29,7 +29,7 @@ Instagram:https://www.instagram.com/aziz.kpln
 * pip3 install -r requiremenets.txt 
 
 # Usage
-![](images/2.png)
+![](images/v23.png)
 
 # Output
 ![](images/3.png)
