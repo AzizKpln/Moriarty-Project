@@ -1,5 +1,5 @@
-# Moriarty-Project
-
+# Moriarty-Project V2.3
+ 
 # ![](images/1.png)
 # What IS Moriarty?
 - Advanced Information Gathering And Osint Tool
@@ -38,6 +38,10 @@ Instagram:https://www.instagram.com/aziz.kpln
 ![](images/4.png)
 * It is necessery to have an amazon aws account otherwise sms won't be sent.
 
+# CURRENT VERSION:
+* v2.3
+
 # Note
 * Please don't use your real gmail account open a fake account and don't add your phone number for better usage of the tool.
 * This tool will not steal your account. Codes are opensource you can check.
+
