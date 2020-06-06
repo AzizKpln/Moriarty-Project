@@ -46,10 +46,10 @@ def sync(phone_number):
     driver.switch_to.default_content()
     WebDriverWait(driver, 10).until(EC.frame_to_be_available_and_switch_to_it((By.CSS_SELECTOR,"iframe[title='recaptcha challenge']")))
     time.sleep(2)
-    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button#solver-button"))).click()
-    output=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div/div/div[1]'))).text
     try:
         while True:
+            WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button#solver-button"))).click()
+            output=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div/div/div[1]'))).text
             time.sleep(1)
             if output=="Multiple correct solutions required - please solve more.":
                 driver.switch_to.default_content()
@@ -58,7 +58,7 @@ def sync(phone_number):
                 WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button#solver-button"))).click()
                 output=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div/div/div[1]'))).text
             else:
-                break
+                continue
     except:
         pass
 
@@ -75,8 +75,6 @@ def sync(phone_number):
             print(colored.green("[+]Owner Sync Name:"+output1))
     except:
         print(colored.red("[-]Recaptcha Error Please Change Your Ip Or Reset Your Modem And Try To Run It Again!"))
-
-
 
 
 #
