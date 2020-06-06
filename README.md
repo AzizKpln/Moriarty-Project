@@ -26,10 +26,10 @@ Instagram:https://www.instagram.com/aziz.kpln
 # Installation
 * chmod 755 install.sh
 * ./install.sh
-* pip3 install -r requiremenets.txt 
-
 # Usage
 ![](images/v23.png)
+* python3 Moriarty.py -m microsoft_mail@outlook.com -p password -n +phone_number
+* python3 Moriarty.py -g gmail_mail@gmail.com -p password -n +phone_number
 
 # Output
 ![](images/3.png)
