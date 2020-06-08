@@ -3,7 +3,7 @@
 # ![](images/1.png)
 # What IS Moriarty?
 - Advanced Information Gathering And Osint Tool
-- Moriarty is a tool that tries to find good informations about the phone number that you provied;
+- Moriarty is a tool that tries to find good information about the phone number that you provieded;
 
 ->Tries To Find Owner Of The Number
 
@@ -26,6 +26,8 @@ Instagram:https://www.instagram.com/aziz.kpln
 # Installation
 * chmod 755 install.sh
 * ./install.sh
+# Note About Installation
+* This tool has to be run as non-root. And it has to be downloaded in the directory that doesnt require any root permission. That feature will be added in the next release
 # Usage
 ![](images/v23.png)
 * python3 Moriarty.py -m microsoft_mail@outlook.com -p password -n +phone_number
