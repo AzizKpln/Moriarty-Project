@@ -244,12 +244,14 @@ if options.gmail_mail_address==None:
 	microsoft_mail(options.phone_number,options.microsoft_mail_address,options.mail_password)
 else:
 	name(options.phone_number,options.gmail_mail_address,options.mail_password)
-sync(options.phone_number)
-
 try:
     sync(options.phone_number)
 except:
-    print(colored.red("[-]Recaptcha Error Please Reset Your Modem Or Change Your Ip Address."))
+    print(colored.red("[-]Sync Error."))
+try:
+    sync(options.phone_number)
+except:
+    print(colored.red("[-]Sync Error."))
 
 try:
     location_risk_number(options.phone_number)
