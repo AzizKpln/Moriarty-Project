@@ -241,9 +241,12 @@ os.system("clear")
 
 print(colored.blue("Owner Name/Number Information:\n"))
 if options.gmail_mail_address==None:
-	microsoft_mail(options.phone_number,options.microsoft_mail_address,options.mail_password)
+    microsoft_mail(options.phone_number,options.microsoft_mail_address,options.mail_password)
 else:
-	name(options.phone_number,options.gmail_mail_address,options.mail_password)
+    try:
+        name(options.phone_number,options.gmail_mail_address,options.mail_password)
+    except:
+        print(colored.red("[-]Please try to use microsoft mail."))
 try:
     sync(options.phone_number)
 except:
