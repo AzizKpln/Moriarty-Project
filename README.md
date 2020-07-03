@@ -1,4 +1,4 @@
-# Moriarty-Project V2.3
+# Moriarty-Project V2.4
  
 # ![](images/1.png)
 # What IS Moriarty?
@@ -41,7 +41,7 @@ Instagram:https://www.instagram.com/aziz.kpln
 * It is necessery to have an amazon aws account otherwise sms won't be sent.
 
 # CURRENT VERSION:
-* v2.3
+* v2.4
 
 # Note
 * Please don't use your real gmail account open a fake account and don't add your phone number for better usage of the tool.
