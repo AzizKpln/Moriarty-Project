@@ -11,9 +11,7 @@ YOUTUBE:CyberSploitable TR
 --------------------------------------------------------------
 [+]This Phone Number Is Connected To An Instagram Account!
 --------------------------------------------------------------
-[+]This Phone Number Is Connected To A G00gle Account!
---------------------------------------------------------------
-[+]This Phone Number Is Connected To A Y0utube Account!
+[+]This Phone Number Is Not Connected To A Twitter Account!
 --------------------------------------------------------------
 [+]This Phone Number Is Connected To A Linkedin Account!
 --------------------------------------------------------------

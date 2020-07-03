@@ -248,15 +248,6 @@ else:
     except:
         print(colored.red("[-]Please try to use microsoft mail."))
 try:
-    sync(options.phone_number)
-except:
-    print(colored.red("[-]Sync Error."))
-try:
-    sync(options.phone_number)
-except:
-    print(colored.red("[-]Sync Error."))
-
-try:
     location_risk_number(options.phone_number)
 except:
     print(colored.red("[-]Unknown Phone Number"))
@@ -281,7 +272,7 @@ except:
 try:
 	google_phone(options.phone_number)
 except:
-	print(colored.red("[-]Something Went Wrong! Please Reset Your Modem And Try To Use The Tool Again!"))
+    pass
 try:
 	linkedin_phone(options.phone_number)
 except:
