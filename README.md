@@ -1,6 +1,15 @@
 # Moriarty-Project V2.4
  
 # ![](images/1.png)
+# CHROMEDRIVER 81 ERROR
+if you get this error,
+issue these commands;
+* sudo apt purge chromium
+* sudo apt install chromium
+
+then go to this link : https://chromedriver.chromium.org
+
+install chromedriver and copy it into Bruter19/path directory
 # What IS Moriarty?
 - Advanced Information Gathering And Osint Tool
 - Moriarty is a tool that tries to find good information about the phone number that you provieded;
