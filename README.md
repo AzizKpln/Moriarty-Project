@@ -1,6 +1,6 @@
 # Moriarty-Project V2.5
 
-# ![](images/moriarty.png)
+# ![](images/moriarty.PNG)
 
 # What IS Moriarty?
 - Advanced Information Gathering And Osint Tool
@@ -30,7 +30,7 @@
 > ./install.sh
 
 # Usage
-![](images/moriarty2.png)
+![](images/moriarty2.PNG)
 > python3 Moriarty.py -m microsoft_mail@outlook.com -p password -n +phone_number
 
 # Usage Example
