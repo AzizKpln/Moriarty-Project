@@ -1,6 +1,8 @@
 selenium==4.0.0a1
 phonenumbers==8.12.2
-boto3==1.13.4
 pyvirtualdisplay==0.2.5
 requests==2.22.0
-
+undetected_chromedriver==1.4.2
+clint==0.5.1
+certifi==2020.4.5.1
+bs4==0.0.1

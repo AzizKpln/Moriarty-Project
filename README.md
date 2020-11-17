@@ -1,22 +1,7 @@
-# DONATE BITCOIN
-39NMXZtZGRndn6bUi5voV5drCDbrVvRimj
-# THIS PROJECT HAS MOVED
-* check: https://github.com/AzizKpln/Whistleye_Project
-# Moriarty-Project V2.4
-# ![](images/1.png)
+# Moriarty-Project V2.5
 
-# VERSION V3.0 
-* very soon. 
+# ![](images/moriarty.png)
 
-# CHROMEDRIVER 81 ERROR
-if you get this error,
-issue these commands;
-* sudo apt purge chromium
-* sudo apt install chromium
-
-then go to this link : https://chromedriver.chromium.org
-
-install chromedriver and copy it into Bruter19/path directory
 # What IS Moriarty?
 - Advanced Information Gathering And Osint Tool
 - Moriarty is a tool that tries to find good information about the phone number that you provieded;
@@ -36,30 +21,26 @@ install chromedriver and copy it into Bruter19/path directory
 ->Sends Sms To Phone Number With Amazon Aws
 # TO Contact
 
-Facebook:https://www.facebook.com/aziz.kaplan.96387
+* Facebook:https://www.facebook.com/aziz.kaplan.96387
 
-Instagram:https://www.instagram.com/aziz.kpln
+* Instagram:https://www.instagram.com/aziz.kpln
+
 # Installation
-* chmod 755 install.sh
-* ./install.sh
-# Note About Installation
-* This tool has to be run as non-root. And it has to be downloaded in the directory that doesnt require any root permission. That feature will be added in the next release
+> chmod 755 install.sh
+> ./install.sh
+
 # Usage
-![](images/v23.png)
-* python3 Moriarty.py -m microsoft_mail@outlook.com -p password -n +phone_number
-* python3 Moriarty.py -g gmail_mail@gmail.com -p password -n +phone_number
+![](images/moriarty2.png)
+> python3 Moriarty.py -m microsoft_mail@outlook.com -p password -n +phone_number
+
+# Usage Example
+< python3 Moriarty.py -m mymicrosoft@outlook.com -p mypasswoed -n +9054xxxxxxxx
 
 # Output
 ![](images/3.png)
 
-# Sending Sms
-![](images/4.png)
-* It is necessery to have an amazon aws account otherwise sms won't be sent.
-
-# CURRENT VERSION:
-* v2.4
 
 # Note
-* Please don't use your real gmail account open a fake account and don't add your phone number for better usage of the tool.
+* Microsoft mail address is required but it does not have to be the one that you're using currently. You can create a fake microsoft account for this project.
 * This tool will not steal your account. Codes are opensource you can check.
 

@@ -1,12 +1,11 @@
+python3 banners/installation_banner.py
 sudo apt-get update && sudo apt-get install python3-pip -y
 sudo apt-get install chromium -y
 pip3 install colored
-wget https://chromedriver.storage.googleapis.com/83.0.4103.39/chromedriver_linux64.zip
+python3 path/chromedriver_installation.py
 unzip chromedriver_linux64.zip
+rm -r chromedriver_linux64.zip
 cp chromedriver path/
-rm chromedriver*
-pip3 install clint
 sudo apt-get install figlet
-pip3 install certifi
-pip3 install bs4
 pip3 install -r requirements.txt
+
