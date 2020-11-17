@@ -34,7 +34,7 @@
 > python3 Moriarty.py -m microsoft_mail@outlook.com -p password -n +phone_number
 
 # Usage Example
-< python3 Moriarty.py -m mymicrosoft@outlook.com -p mypasswoed -n +9054xxxxxxxx
+> python3 Moriarty.py -m mymicrosoft@outlook.com -p mypasswoed -n +9054xxxxxxxx
 
 # Output
 ![](images/3.png)
