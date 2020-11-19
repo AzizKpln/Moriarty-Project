@@ -39,6 +39,8 @@
 # Output
 ![](images/3.png)
 
+# Mobile
+* This tool doesn't work on kali nethunter,termux or any other mobile operating systems. You can use this tool on this website: https://www.whistleye.com
 
 # Note
 * Microsoft mail address is required but it does not have to be the one that you're using currently. You can create a fake microsoft account for this project.
