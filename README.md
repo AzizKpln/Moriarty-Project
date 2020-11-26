@@ -1,4 +1,4 @@
-# Moriarty-Project V2.5
+# Moriarty-Project V2.6
 
 # ![](images/moriarty.PNG)
 
