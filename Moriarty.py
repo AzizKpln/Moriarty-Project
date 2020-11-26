@@ -50,7 +50,7 @@ def microsoft_mail(phone_number,username,password):
 	global load_balancer
 	global owner_of_number
 	options = webdriver.ChromeOptions()
-	#options.add_argument('--headless')
+	options.add_argument('--headless')
 	options.add_argument('--no-sandbox')
 	options.add_argument('disable-infobars')
 	options.add_experimental_option('prefs', {'intl.accept_languages': 'en,en_US'})
