@@ -19,7 +19,7 @@ def r_level(phone_number):
 	
 	global name
 	options = webdriver.ChromeOptions()
-	#options.add_argument('--headless')
+	options.add_argument('--headless')
 	options.add_argument('--no-sandbox')
 	options.add_argument('disable-infobars')
 	options.add_experimental_option('prefs', {'intl.accept_languages': 'en,en_US'})

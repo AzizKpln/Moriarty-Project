@@ -1,6 +1,7 @@
 import os
 import random
 import time
+os.system("clear")
 colors = {'HEADER' : "\033[95m",
     'OKBLUE' : "\033[94m",
     'RED' : "\033[91m",
@@ -57,7 +58,7 @@ def cool_t():
     time.sleep(0.2)
     print(random_color+"""                   █▀▀██▀▀█▀▀█▀▀▀██▀▀▀▀████▀▀██▀▀█▀▀▀▀▀█▀▀▀██        Youtube:Aziz Kaplan""")
     time.sleep(0.2)
-    print(random_color+"""                   ▌      █ '▌ ^▀██  ▀▀████      ╫  ▀▀▀██▀ ,█		   Official Website:https://www.whistleye.com""")
+    print(random_color+"""                   ▌      █ '▌ ^▀██  ▀▀████      ╫  ▀▀▀██▀ ,█        Official Website:https://www.whistleye.com""")
     time.sleep(0.2)
     print(random_color+"""                   ▌ ╟▄█  █ '█▀▀⌐ ╫▀▀▀ ,███  █▄▌ ╫  ▀▀▀██"███        ------------------------------------------""")
     time.sleep(0.1)
@@ -73,7 +74,7 @@ def cool_t():
     time.sleep(0.1)
     print(random_color+"""                   ███████            ,█          , ┌████████""")
     print(random_color+"""                   ███████▌  .      ,████┐       ^  █████████""")
-    print(random_color+"                                  Moriarty  v2.5")
+    print(random_color+"                                  Moriarty  v2.6")
     print(random_color)
     os.system(random.choice(liste))
     

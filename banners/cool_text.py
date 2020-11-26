@@ -57,7 +57,7 @@ def cool_t():
     time.sleep(0.2)
     print(random_color+"""                   █▀▀██▀▀█▀▀█▀▀▀██▀▀▀▀████▀▀██▀▀█▀▀▀▀▀█▀▀▀██        Youtube:Aziz Kaplan""")
     time.sleep(0.2)
-    print(random_color+"""                   ▌      █ '▌ ^▀██  ▀▀████      ╫  ▀▀▀██▀ ,█		   Official Website:https://www.whistleye.com""")
+    print(random_color+"""                   ▌      █ '▌ ^▀██  ▀▀████      ╫  ▀▀▀██▀ ,█	     Official Website:https://www.whistleye.com""")
     time.sleep(0.2)
     print(random_color+"""                   ▌ ╟▄█  █ '█▀▀⌐ ╫▀▀▀ ,███  █▄▌ ╫  ▀▀▀██"███        ------------------------------------------""")
     time.sleep(0.1)
@@ -73,7 +73,7 @@ def cool_t():
     time.sleep(0.1)
     print(random_color+"""                   ███████            ,█          , ┌████████""")
     print(random_color+"""                   ███████▌  .      ,████┐       ^  █████████""")
-    print(random_color+"                                  Moriarty  v2.5")
+    print(random_color+"                                  Moriarty  v2.6")
     print(random_color)
     os.system(random.choice(liste))
     

@@ -26,8 +26,9 @@ def deep_two(phone_number):
     serv=Service("%s/path/chromedriver"%loc)
     driver = webdriver.Chrome(options=options,service=serv)
     driver.get("https://www.unknownphone.com/")
-    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div[1]/div/form/input"))).send_keys(phone_number)
-    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="search_submit"]'))).click()
+    
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "num"))).send_keys(phone_number)
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'search_submit'))).click()
     #/html/body/div[1]/div/div[1]/div[3]/div[2]/div[4]
     try:
         blocked=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div[1]/div[3]/div[2]/div[4]/strong'))).text

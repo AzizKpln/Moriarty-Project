@@ -67,12 +67,14 @@ def microsoft_mail(phone_number,username,password):
 	try:
 		WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div/form[1]/div/div/div[1]/div[2]/div[2]/div/div[2]/div/div[2]/div/div[2]/input"))).send_keys(password)
 		WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div/form[1]/div/div/div[1]/div[2]/div[2]/div/div[2]/div/div[3]/div[2]/div/div/div/div/input"))).click()
-		time.sleep(2)
-		WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "idBtn_Back"))).click()
-
+		time.sleep(5)
+		
 
 		WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div/nav/div/form/input"))).send_keys(phone_number)
+		time.sleep(1)
 		WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div/nav/div/form/button"))).click()
+		
+		
 
 		try:
 			name=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/main/div/div[1]/div[1]/header/div[2]/h1"))).text
