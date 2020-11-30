@@ -40,7 +40,7 @@ def fb(phone_number):
     except:
         #fsl fwb fcb
         try:
-            name=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="initiate_interstitial"]/div[1]/table/tbody/tr/td[2]/div/div/div[2]/div'))).text
+            name=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[3]/div[1]/div/form/div/div[2]/table/tbody/tr/td[2]/div/div/div[2]/div'))).text
             
             name="This Phone Number Is Connected To A Facebook Account. Facebook Name/Number:"+str(name)
             
