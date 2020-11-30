@@ -1,7 +1,8 @@
 # Moriarty-Project V2.6
 
 # ![](images/moriarty.PNG)
-
+# Huge Note
+- Run it as Non-Root
 # What IS Moriarty?
 - Advanced Information Gathering And Osint Tool
 - Moriarty is a tool that tries to find good information about the phone number that you provieded;
