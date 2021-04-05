@@ -22,11 +22,6 @@ Updated. Works flawlessly
 ->Tries To Find Comments About Phone Number
 
 ->Sends Sms To Phone Number With Amazon Aws
-# TO Contact
-
-* Facebook:https://www.facebook.com/aziz.kaplan.96387
-
-* Instagram:https://www.instagram.com/aziz.kpln
 
 # Installation
 > chmod 755 install.sh
