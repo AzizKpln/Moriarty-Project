@@ -30,12 +30,12 @@ def r_level(phone_number):
 	
 	WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, "q"))).send_keys(phone_number)
 
-	#/html/body/div[3]/div/div/div/div[1]/form/button
 	WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[2]/div/div/div/div[1]/form/button'))).click()
 	name=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'typ'))).text
 
 	if "Other" in name or "other" in name:
 		name="Spam Potensial: High Risk/SPAM"
+
 	print(colored.blue(name))
 
     

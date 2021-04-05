@@ -29,21 +29,24 @@ def lnkd(phone_number):
     loc=os.getcwd()
     driver = uc.Chrome(options=options)
     driver.get("https://www.linkedin.com/login")
-    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div/main/div[2]/form/div[1]/input"))).send_keys(phone_number)
-    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div/main/div[2]/form/div[2]/input"))).send_keys("sametcarleone")
-    
-
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "username"))).send_keys(phone_number)
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "password"))).send_keys("sametcarleone")
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div/main/div[2]/div[1]/form/div[3]/button'))).click()
     try:
-        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="app__container"]/main/div[2]/form/div[3]/button'))).click()
-        name=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div/main/div[2]/form/div[2]/div"))).text
-        name="This Phone Number Is  Connected To A Linkedin Account!"
-        print(colored.green("[+]")+colored.blue(name))
-        
-
+        name=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "error-for-password"))).text
+        if name == "That’s not the right password. Forgot password?":
+            
+            name=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "error-for-password"))).text
+            name="This Phone Number Is  Connected To A Linkedin Account!"
+            print(colored.green("[+]")+colored.blue(name))
+        else:
+            name="This Phone Number Is Not Connected To Any Linkedin Account!"
+            print(colored.magenta("[-]")+colored.red(name))
     except:
         name="This Phone Number Is Not Connected To Any Linkedin Account!"
         print(colored.magenta("[-]")+colored.red(name))
         
+
     linkedin_load_balancer=False
     driver.close()
 

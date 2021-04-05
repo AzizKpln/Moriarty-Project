@@ -33,14 +33,12 @@ def deep_two(phone_number):
     try:
         blocked=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div[1]/div[3]/div[2]/div[4]/strong'))).text
         print(colored.red("[!]This Phone Number Is Blocked On unknownphone.com It Could Be A SCAM!"))
-        with open("output/comments1.txt","a+") as file:
-            file.write("\n--------------------------------------------------------------")
+     
         time.sleep(3)
 
     except:
 
-        with open("output/comments1.txt","a+") as file:
-            file.write("\n--------------------------------------------------------------")
+     
         time.sleep(3)
     try:
         for x in range(1,10):
@@ -48,7 +46,6 @@ def deep_two(phone_number):
             name=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, xpath))).text
             print(colored.green("[+]Comments About This Number:"),end="")
             print(colored.blue(name))
-            with open("output/comments1.txt","a+") as file:
-                file.write("\nCOMMENT:\n"+name+"\n--------------------------------------------------------------")
+            
     except:
         pass

@@ -30,12 +30,18 @@ def fb(phone_number):
     loc=os.getcwd()
     driver = uc.Chrome(options=options)
     driver.get("https://www.facebook.com/login/identify")
-    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div[3]/div[1]/div/div/div/form/div/div[2]/div/table/tbody/tr[2]/td[2]/input"))).send_keys(phone_number)
-    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div[3]/div[1]/div/div/div/form/div/div[3]/div/div[1]/label/input"))).click()
+    time.sleep(1)
+    try:
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div[2]/div[1]/div/div[2]/div/div/form/div/div[2]/div/table/tbody/tr[2]/td[2]/input"))).send_keys(phone_number);time.sleep(1)
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, 'did_submit'))).click()
+    except:
+        #/html/body/div[1]/div[3]/div[1]/div/div/div/form/div/div[2]/div/table/tbody/tr[2]/td[2]/input
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div[3]/div[1]/div/div/div/form/div/div[2]/div/table/tbody/tr[2]/td[2]/input"))).send_keys(phone_number);time.sleep(1)
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, 'did_submit'))).click()
     #/html/body/div[1]/div[3]/div[1]/div/div/form/div/div[2]/ul/li[1]/div/table/tbody/tr/td[1]/div/div/div/div[2]/div[1]
     try:
-        name=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div[3]/div[1]/div/div/form/div/div[2]/ul/li[1]/div/table/tbody/tr/td[1]/div/div/div/div[2]/div[1]"))).text
-        print(colored.green("[+]This Phone Number Is Connected To A Facebook Account!"))
+        name=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div[2]/div[1]/div/div[2]/form/div/div[2]/table/tbody/tr/td[2]/div/div[2]"))).text
+        print(colored.blue("[+]This Phone Number Is Connected To A Facebook Account!"))
         name="Connected To A Facebook Account.Facebook Name/Number:"+str(name)
     except:
         #fsl fwb fcb
@@ -48,7 +54,7 @@ def fb(phone_number):
         except:
             name="This Phone Number Is Not Connected To Any Facebook Account!"
            
-    print(name)
+
     driver.quit()
     facebook_load_balancer=False
 

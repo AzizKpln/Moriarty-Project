@@ -12,5 +12,3 @@ def location(phone_number):
     print(colored.green("[+]Country:"+str(country)))
     print(colored.green("[+]Time Zone:"+str(liste[0])))
     print(colored.green("[+]Carrier:"+str(operator)))
-    with open("output/location_operator.txt","a+") as file:
-        file.write("\n[+]Country:\n"+str(country)+"\n[+]Time Zone:\n"+str(liste[0])+"\n[+]Carrier:\n"+str(operator)+"\n--------------------------------------------------------------")

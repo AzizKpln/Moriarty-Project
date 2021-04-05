@@ -32,16 +32,13 @@ def tw(phone_number):
 	driver.get("https://twitter.com/login/")
 	WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, "session[username_or_email]"))).send_keys(phone_number)
 	WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, "session[password]"))).send_keys("ihopeitsnotyourpasswordtygodtyjesus")
-	WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="react-root"]/div/div/div[2]/main/div/div/div[1]/form/div/div[3]/div'))).click()
+	WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div/div/div/div[2]/main/div/div/div[2]/form/div/div[3]/div/div'))).click()
 
 	#/html/body/div[1]/div[3]/div[1]/div/div/form/div/div[2]/ul/li[1]/div/table/tbody/tr/td[1]/div/div/div/div[2]/div[1]
 	try:
 		time.sleep(5)
-		try:
-			name=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="react-root"]/div/div/div[2]/main/div/div/div[1]/span'))).text
-		except:
-			#/html/body/div/div/div/div[2]/main/div/div/div[1]/span
-			name=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div/div/div/div[2]/main/div/div/div[1]/span'))).text
+		name=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div/div/div/div[2]/main/div/div/div[1]/div/div/div/div/div/div'))).text
+		
 		if name=="The phone number and password you entered did not match our records. Please double-check and try again.":
 			name="This Phone Number Is Not Connected To Any Twitter Account!"
 			print(colored.magenta("[-]")+colored.red(name))
@@ -55,5 +52,4 @@ def tw(phone_number):
 		driver.close()
 	except:
 		pass
-
 	twitter_load_balancer=False

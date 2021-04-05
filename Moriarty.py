@@ -59,14 +59,14 @@ def microsoft_mail(phone_number,username,password):
 	driver = uc.Chrome(options=options)
 	driver.get("https://www.truecaller.com/auth/sign-in")
 	WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div/main/div/a[2]"))).click()
-	WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div/form[1]/div/div/div[1]/div[2]/div[2]/div/div/div/div[2]/div[2]/div/input[1]"))).send_keys(username)
-	WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div/form[1]/div/div/div[1]/div[2]/div[2]/div/div/div/div[4]/div/div/div/div[2]/input"))).click()
+	WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, "loginfmt"))).send_keys(username)
+	WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div/form[1]/div/div/div[2]/div/div/div[1]/div[2]/div[2]/div/div/div/div[4]/div/div/div/div[2]/input"))).click()
 	
     
 
 	try:
-		WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div/form[1]/div/div/div[1]/div[2]/div[2]/div/div[2]/div/div[2]/div/div[2]/input"))).send_keys(password)
-		WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div/form[1]/div/div/div[1]/div[2]/div[2]/div/div[2]/div/div[3]/div[2]/div/div/div/div/input"))).click()
+		WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, "passwd"))).send_keys(password)
+		WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div/form[1]/div/div/div[2]/div/div/div[1]/div[2]/div[2]/div/div[2]/div/div[3]/div[2]/div/div/div/div/input"))).click()
 		time.sleep(5)
 		
 
@@ -97,7 +97,7 @@ def microsoft_mail(phone_number,username,password):
 			try:
 				name=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/main/div/div[1]/div[1]/header/div[2]/h1"))).text
 				owner_of_number=name
-				print(colored.green("[+]")+colored.blue(owner_of_number))
+				print(colored.green("[+]Owner:")+colored.blue(owner_of_number))
 				driver.quit()
 			except:
 				no_results_found=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/main/div/div[1]/div/h3"))).text
@@ -162,16 +162,6 @@ options=get_arguments()
 
 c_text()
 ignore_logs()
-with open("output/comments1.txt","w+") as file:
-    file.write("****************************************\nTHANK YOU FOR USING MORIARTY!\nYOU CAN SUPPORT ME WITH FOLLOWING MY SOCIAL MEDIA ACCOUNTS!\nFACEBOOK:https://www.facebook.com/aziz.kaplan.96387\nINSTAGRAM:https://www.instagram.com/aziz.kpln/\nGITHUB:https://www.github.com/AzizKpln\nYOUTUBE:CyberSploitable TR\n****************************************")
-with open("output/comments2.txt","w+") as file:
-    file.write("****************************************\nTHANK YOU FOR USING MORIARTY!\nYOU CAN SUPPORT ME WITH FOLLOWING MY SOCIAL MEDIA ACCOUNTS!\nFACEBOOK:https://www.facebook.com/aziz.kaplan.96387\nINSTAGRAM:https://www.instagram.com/aziz.kpln/\nGITHUB:https://www.github.com/AzizKpln\nYOUTUBE:CyberSploitable TR\n****************************************")
-with open("output/location_operator.txt","w+") as file:
-    file.write("****************************************\nTHANK YOU FOR USING MORIARTY!\nYOU CAN SUPPORT ME WITH FOLLOWING MY SOCIAL MEDIA ACCOUNTS!\nFACEBOOK:https://www.facebook.com/aziz.kaplan.96387\nINSTAGRAM:https://www.instagram.com/aziz.kpln/\nGITHUB:https://www.github.com/AzizKpln\nYOUTUBE:CyberSploitable TR\n****************************************")
-with open("output/social_media_results.txt","w+") as file:
-    file.write("****************************************\nTHANK YOU FOR USING MORIARTY!\nYOU CAN SUPPORT ME WITH FOLLOWING MY SOCIAL MEDIA ACCOUNTS!\nFACEBOOK:https://www.facebook.com/aziz.kaplan.96387\nINSTAGRAM:https://www.instagram.com/aziz.kpln/\nGITHUB:https://www.github.com/AzizKpln\nYOUTUBE:CyberSploitable TR\n****************************************")
-with open("output/owner_of_number.txt","w+") as file:
-    file.write("****************************************\nTHANK YOU FOR USING MORIARTY!\nYOU CAN SUPPORT ME WITH FOLLOWING MY SOCIAL MEDIA ACCOUNTS!\nFACEBOOK:https://www.facebook.com/aziz.kaplan.96387\nINSTAGRAM:https://www.instagram.com/aziz.kpln/\nGITHUB:https://www.github.com/AzizKpln\nYOUTUBE:CyberSploitable TR\n****************************************")
 os.system("clear")
 
 
