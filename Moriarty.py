@@ -28,7 +28,6 @@ from risks_and_deep_search import risks
 from risks_and_deep_search import deep_info1
 from risks_and_deep_search import deep_info2
 from risks_and_deep_search import deep_info3
-from send_sms import sms
 from owner import owner_sync
 import undetected_chromedriver as uc
 os.system("clear")
