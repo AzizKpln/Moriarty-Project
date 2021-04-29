@@ -13,7 +13,7 @@ from bs4 import BeautifulSoup
 import sys
 from clint.textui import colored
 import optparse
-
+import undetected_chromedriver as uc
 
 def deep_two(phone_number):
     options = webdriver.ChromeOptions()
@@ -21,10 +21,10 @@ def deep_two(phone_number):
     options.add_argument('--no-sandbox')
     options.add_argument('disable-infobars')
     options.add_experimental_option('prefs', {'intl.accept_languages': 'en,en_US'})
-    options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36")
-    loc=os.getcwd()
-    serv=Service("%s/path/chromedriver"%loc)
-    driver = webdriver.Chrome(options=options,service=serv)
+    options.add_argument(
+        "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36")
+    loc = os.getcwd()
+    driver = uc.Chrome(options=options)
     driver.get("https://www.unknownphone.com/")
     
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "num"))).send_keys(phone_number)
