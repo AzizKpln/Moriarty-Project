@@ -1,8 +1,8 @@
-selenium==4.0.0a1
-phonenumbers==8.12.2
-pyvirtualdisplay==0.2.5
-requests==2.22.0
-undetected_chromedriver==1.4.2
-clint==0.5.1
-certifi==2020.4.5.1
-bs4==0.0.1
+selenium
+phonenumbers
+pyvirtualdisplay
+requests
+undetected_chromedriver
+clint
+certifi
+bs4
