@@ -24,7 +24,7 @@ Updated. Works flawlessly
 ->Sends Sms To Phone Number With Amazon Aws
 
 # Installation
-> git clone 
+> git clone https://github.com/DARKSHADOW2324/Moriarty-Project
 > cd Moriarty-Project
 > chmod 755 install.sh
 > ./install.sh
