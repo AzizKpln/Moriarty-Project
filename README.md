@@ -29,6 +29,8 @@ Updated. Works flawlessly
 > $ chmod 755 install.sh
 > $ ./install.sh
 > $ python3 Moriarty.py -h (-h for help)
+# ASCII Image
+
 # Usage
 ![](images/moriarty2.PNG)
 > python3 Moriarty.py -m microsoft_mail@outlook.com -p password -n +phone_number
