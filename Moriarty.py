@@ -59,13 +59,13 @@ def microsoft_mail(phone_number,username,password):
 	driver.get("https://www.truecaller.com/auth/sign-in")
 	WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div/main/div/a[2]"))).click()
 	WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, "loginfmt"))).send_keys(username)
-	WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div/form[1]/div/div/div/div[2]/div/div/div[1]/div[3]/div/div/div/div[4]/div/div/div/div[2]/input"))).click()
+	WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div/form[1]/div/div/div[2]/div[1]/div/div/div/div/div[1]/div[3]/div/div/div/div[4]/div/div/div/div[2]/input"))).click()
 	
     
 
 	try:
 		WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, "passwd"))).send_keys(password)
-		WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div/form[1]/div/div/div/div[2]/div/div/div[1]/div[3]/div/div[2]/div/div[3]/div[2]/div/div/div/div/input"))).click()
+		WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div/form[1]/div/div/div[2]/div[1]/div/div/div/div/div/div[3]/div/div[2]/div/div[3]/div[2]/div/div/div/div/input"))).click()
 		#WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div/div/div[2]/div/div[1]/div[2]/div/div[2]/div/form/div/div/div/div[2]/input"))).click() Only run on first execution w microsoft account
 		time.sleep(5)
 		WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div/nav/div/form/input"))).send_keys(phone_number)
