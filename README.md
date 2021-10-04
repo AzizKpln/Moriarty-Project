@@ -4,7 +4,7 @@
 # Huge Note
 - Run it as Non-Root
 # Situation
-Updated. Works flawlessly
+Not working. The Update will be released at an appropriate time.
 # What IS Moriarty?
 - Advanced Information Gathering And Osint Tool
 - Moriarty is a tool that tries to find good information about the phone number that you provieded;
