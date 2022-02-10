@@ -12,9 +12,7 @@ colors = {'HEADER' : "\033[95m",
     'END' : "\033[0m",
     'BOLD' : "\033[1m",
     'UNDERLINE' : "\033[4m" }
-liste=[
-"figlet -c Moriarty -f banners/sblood.flf  ","figlet -c Moriarty -f banners/3-d.flf  ","figlet -c Moriarty -f banners/avatar.flf  ","figlet -c Moriarty -f banners/bell.flf  ","figlet -c Moriarty -f banners/big.flf  ","figlet -c Moriarty -f banners/bigchief.flf  ","figlet -c Moriarty -f banners/kban.flf  "
-]
+
 colors_list=[
 "OKBLUE",
 "RED",
@@ -58,7 +56,7 @@ def cool_t():
     time.sleep(0.2)
     print(random_color+"""                   █▀▀██▀▀█▀▀█▀▀▀██▀▀▀▀████▀▀██▀▀█▀▀▀▀▀█▀▀▀██""")
     time.sleep(0.2)
-    print(random_color+"""                   ▌      █ '▌ ^▀██  ▀▀████      ╫  ▀▀▀██▀ ,█        Author:Aziz Kaplan""")
+    print(random_color+"""                   ▌      █ '▌ ^▀██  ▀▀████      ╫  ▀▀▀██▀ ,█        Developed By: Aziz Kaplan""")
     time.sleep(0.2)
     print(random_color+"""                   ▌ ╟▄█  █ '█▀▀⌐ ╫▀▀▀ ,███  █▄▌ ╫  ▀▀▀██"███        ------------------------------------------""")
     time.sleep(0.1)
@@ -74,12 +72,8 @@ def cool_t():
     time.sleep(0.1)
     print(random_color+"""                   ███████            ,█          , ┌████████""")
     print(random_color+"""                   ███████▌  .      ,████┐       ^  █████████""")
-    print(random_color+"                                  Moriarty  v2.7")
+    print(random_color+"                                  Moriarty  v3.0")
     print(random_color)
-    os.system(random.choice(liste))
-    
+    #os.system(random.choice(liste))
 
-
-
-    time.sleep(3)
 cool_t()
