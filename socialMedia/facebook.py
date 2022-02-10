@@ -4,8 +4,8 @@ class facebookInformation:
     def __init__(self):
         f=open("Moriarty/c_Version.moriarty","r")
         options=uc.ChromeOptions()
-        #display=Display(visible=0,size=(1024, 768))
-        #display.start()
+        display=Display(visible=0,size=(1024, 768))
+        display.start()
         self.driver=uc.Chrome(options=options,version_main=f.read())
 
     
