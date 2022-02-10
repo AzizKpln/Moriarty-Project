@@ -8,7 +8,7 @@ Updated. Next update date: 10/04/2022
 #### Moriarty tries to find important information about a spesific phone number. Features:
 - Tries to find the owner of the phone number
 - Spam risk
-- Comments that is made for a spesific phone number
+- Comments about the phone number
 - Linked social media platforms
 - reports, searches, duckduckgo results etc.
 
