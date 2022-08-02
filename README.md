@@ -2,7 +2,8 @@
 ![](images/3.png)
 
 # Situation - Moriarty-Project V3.0
-Updated. Next update date: 10/04/2022
+Moving to playwright + web based usage
+Doesn't work currently
 
 # What IS Moriarty?
 #### Moriarty tries to find important information about a spesific phone number. Features:
