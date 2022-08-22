@@ -1,5 +1,5 @@
 # Moriarty-Project Remastered V4.1.1
-![](https://im2.ezgif.com/tmp/ezgif-2-cb7d5e8485.gif)
+![](banners/v4.1.1.gif)
 
 # Situation - Moriarty-Project V4.1.1
 Will be released soon.
