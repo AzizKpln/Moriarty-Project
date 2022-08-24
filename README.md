@@ -1,5 +1,5 @@
 # Moriarty-Project Remastered V4.1.1
-![](banners/v4.1.1.gif)
+![](banners/gif.gif)
 
 # Situation - Moriarty-Project V4.1.1
 Will be released soon.
