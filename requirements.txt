@@ -1,8 +1,8 @@
-selenium
-phonenumbers
-pyvirtualdisplay
-requests
-undetected_chromedriver
-clint
-certifi
+flask
+gevent
 bs4
+requests
+phonenumbers
+pytz
+playwright
+pyvirtualdisplay
