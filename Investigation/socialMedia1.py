@@ -2,7 +2,6 @@ import asyncio
 from playwright.async_api import async_playwright
 from pyvirtualdisplay import Display
 import time
-
 def printAll():
     return faceAc
 async def run(playwright,phone_number):
@@ -29,8 +28,9 @@ async def run(playwright,phone_number):
                 faceAc="False"
     except:
         faceAc="False"
-
+    print(faceAc)
     await browser.close()
+
 async def faceMain(phone_number):
     async with async_playwright() as playwright:
         await run(playwright,phone_number)

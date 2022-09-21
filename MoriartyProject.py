@@ -276,17 +276,13 @@ def runScripts():
             threadFunction(main1,phone_number,email,password)
             phoneNumberOwner1=Investigation.FindOwner2.printName()
         if social_media=="Added":
-            threading.Thread(target=threadFunction,args=(faceMain,phone_number,)).start()
-            threading.Thread(target=socialMedia1).start()
-      
-            threading.Thread(target=threadFunction,args=(instaMain,phone_number,)).start()
-            threading.Thread(target=socialMedia2).start()
-            threading.Thread(target=threadFunction,args=(twMain,phone_number,)).start()
-            threading.Thread(target=socialMedia3).start()
-            threading.Thread(target=threadFunction,args=(goMain,phone_number,)).start()
-            threading.Thread(target=socialMedia4).start()
-            threading.Thread(target=threadFunction,args=(micMain,phone_number,)).start()
-            threading.Thread(target=socialMedia5).start()
+            threadFunction(faceMain,phone_number);faceResult=Investigation.socialMedia1.printAll()
+            threadFunction(instaMain,phone_number);instaResult=Investigation.socialMedia2.printAll()
+            threadFunction(twMain,phone_number);twResult=Investigation.socialMedia3.printAll()
+            threadFunction(goMain,phone_number);goResult=Investigation.socialMedia4.printAll()
+            threadFunction(micMain,phone_number);micResult=Investigation.socialMedia5.printAll()
+          
+
         
         
 def _getComments_():
