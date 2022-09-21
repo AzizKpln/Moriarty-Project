@@ -1,7 +1,7 @@
 <p align="center" width="100%">
     <img width="19%" src="https://i.ibb.co/bvKNrwx/t5179.png">
 </p>
-<h2 align="center" width="100%">Moriarty Project Remastered V4.1.1.</h2>
+<h2 align="center" width="100%">Moriarty Project Remastered V4.1.2.</h2>
 
 ![](banners/gif.gif)
 
