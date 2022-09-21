@@ -13,7 +13,7 @@
 Moriarty Project is a powerful web based phone number investigation tool. It has 6 features and it allows you to choose either all features, or the features you like. You can visit documentation page to learn more about features.
 
 ### Situation
-Updated and works without errors.
+Social Media Stuck Issue Fixed.
 
 ### Current Features
 - *Tries To Find The Owner Of The Given Phone Number.*
