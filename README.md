@@ -38,6 +38,35 @@ Review your choices, click **Install**, and wait for setup to finish.
 
 ![Setup — Review and installation](docs/images/setup-04-review.png)
 
+### Optional: OrcaRouter Cyber Inference
+
+[OrcaRouter](https://www.orcarouter.ai) is an OpenAI-compatible AI gateway. This
+repository ships a first-class **OrcaRouter Cyber Inference** provider for
+authorized security teams. Gemini remains the default until you select
+OrcaRouter in the setup dialog (or set `GOKBORU_AI_PROVIDER=orcarouter`).
+
+- **Endpoint:** `https://api.orcarouter.ai/v1`
+- **Authentication:** an OrcaRouter API key (`sk-orca-…`) or OAuth 2.0 with PKCE
+  (S256) using a loopback redirect, so you can sign in without copying a key.
+  Credentials are stored locally with mode `600` and are never returned by the
+  configuration API or displayed again by the interface.
+- **Models:** `orcarouter/auto` is the default. `orca/orcacyber-ultra-1.0` and
+  `orca/orcacyber-zero-1.5` are recommended for security work, and
+  `orcarouter/fusion` is the general fallback. The picker is populated from
+  `GET /v1/models?capability=chat`, so only chat-capable models are offered; it
+  is never a free-text field.
+- **Links:** [provider overview](https://www.orcarouter.ai/cyber) ·
+  [cyber model catalog](https://www.orcarouter.ai/models?tier=cyber)
+
+Environment-only deployments can set `GOKBORU_AI_PROVIDER=orcarouter`,
+`ORCAROUTER_API_KEY` and `ORCAROUTER_MODEL`. `ORCA_BASE_URL` sets both origins,
+while `ORCA_AUTH_BASE_URL` and `ORCA_API_BASE_URL` override the authorization
+and inference origins individually.
+
+Case analysis, web intelligence and document analysis run through OrcaRouter
+when it is selected. Google-grounded search and PDF OCR remain Gemini-only
+because their wire formats need Gemini-specific request fields.
+
 ## Web GUI
 
 ```bash

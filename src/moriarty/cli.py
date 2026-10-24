@@ -33,6 +33,7 @@ from moriarty.webapp import serve_workspace
 from moriarty.services.pastebin_leak_audit import PastebinLeakAuditService
 from moriarty.services.investigation import InvestigationPipeline
 from moriarty.providers.search_backend import GeminiGroundedSearchBackend, SearchBackendError, list_gemini_models
+from moriarty.providers.ai_factory import build_document_intelligence, build_web_intelligence, deployment_configuration
 from moriarty.providers.cybernews_leak_check import CybernewsLeakCheckClient, CybernewsLeakCheckError
 from moriarty.providers.databreach_leak_check import DataBreachLeakCheckClient, DataBreachLeakCheckError
 from moriarty.providers.whatsapp_self_check import WhatsAppSelfCheckClient, WhatsAppSelfCheckError
@@ -86,8 +87,6 @@ from moriarty.providers.business_listing_provider import DasTelefonbuchBusinessP
 from moriarty.services.document_discovery import DocumentDiscoveryService
 from moriarty.providers.document_discovery_provider import DocumentDiscoveryProvider
 from moriarty.providers.gemini_document_ocr import GeminiDocumentOcr
-from moriarty.providers.gemini_document_intelligence import GeminiDocumentIntelligence
-from moriarty.providers.gemini_web_intelligence import GeminiWebIntelligence
 from moriarty.services.official_website_verifier import OfficialWebsiteVerifier
 from moriarty.services.structured_contacts import extract_structured_contacts
 from moriarty.services.web_page_verifier import load_public_html
@@ -888,7 +887,7 @@ def _web_mentions_service(
         max_results=limit,
         verify=verify,
         timeout_seconds=timeout,
-        intelligence=GeminiWebIntelligence(model=model) if intelligence_enabled else None,
+        intelligence=build_web_intelligence(deployment_configuration(), model) if intelligence_enabled else None,
         intelligence_limit=intelligence_limit,
     )
 
@@ -931,7 +930,7 @@ def _document_provider(analyzer:PhoneAnalyzer,limit:int,timeout:float,ocr_enable
     
     backend=GeminiGroundedSearchBackend(model=model,timeout_seconds=min(timeout*.55,75.0))
     ocr=GeminiDocumentOcr(model=model) if ocr_enabled else None
-    intelligence=GeminiDocumentIntelligence(model=model) if intelligence_enabled else None
+    intelligence=build_document_intelligence(deployment_configuration(), model) if intelligence_enabled else None
     return DocumentDiscoveryProvider(DocumentDiscoveryService(analyzer,backend,timeout_seconds=timeout,max_results=limit,ocr=ocr,ocr_limit=ocr_limit,intelligence=intelligence,intelligence_limit=intelligence_limit))
 
 
