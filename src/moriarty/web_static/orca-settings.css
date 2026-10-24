@@ -1,0 +1,174 @@
+/* OrcaRouter Cyber Inference settings panel. */
+
+#setupDialog [hidden] { display: none !important; }
+
+#setupDialog .orcarouter-card {
+  grid-column: 1 / -1;
+  border: 1px solid rgba(90, 190, 255, 0.42);
+  border-radius: 10px;
+  padding: 14px 16px 16px;
+  background: rgba(8, 20, 32, 0.72);
+}
+
+#setupDialog .orcarouter-card legend {
+  padding: 0 8px;
+  color: #8fd4ff;
+  font: 700 11px/1.2 "DejaVu Sans Mono", monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+#setupDialog .orca-intro {
+  margin: 0 0 12px;
+  color: #9fb6cc;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+#setupDialog .orca-intro a { color: #7cc7ff; }
+
+#setupDialog .orca-provider-select,
+#setupDialog .orca-model-field { display: block; margin-bottom: 12px; }
+
+#setupDialog .orca-provider-select select {
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+  padding: 9px 10px;
+  color: #eef6ff;
+  background: #0d1a28;
+  border: 1px solid #2b435a;
+  border-radius: 6px;
+}
+
+#setupDialog .orca-auth-panel {
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  border: 1px solid #223749;
+  border-radius: 7px;
+  background: rgba(10, 24, 38, 0.85);
+}
+
+#setupDialog .orca-auth-heading {
+  margin: 0 0 6px;
+  color: #8fd4ff;
+  font: 700 10.5px/1.2 "DejaVu Sans Mono", monospace;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+#setupDialog .orca-auth-panel label { display: block; font-weight: 600; }
+
+#setupDialog .orca-auth-panel input[type="password"] {
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+  padding: 9px 10px;
+  color: #eef6ff;
+  background: #0b1825;
+  border: 1px solid #2b435a;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+#setupDialog .orca-hint {
+  margin: 7px 0 0;
+  color: #8ea4b8;
+  font-size: 10.5px;
+  line-height: 1.4;
+}
+
+#setupDialog .orca-connect-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+#setupDialog .orca-primary,
+#setupDialog .orca-secondary {
+  padding: 8px 13px;
+  border-radius: 6px;
+  font: 600 11px/1.2 "DejaVu Sans", sans-serif;
+  cursor: pointer;
+}
+
+#setupDialog .orca-primary {
+  color: #fff;
+  background: #ef2948;
+  border: 1px solid #ff4a64;
+}
+
+#setupDialog .orca-primary:disabled { opacity: 0.55; cursor: progress; }
+
+#setupDialog .orca-secondary {
+  color: #cfe4f5;
+  background: #12253a;
+  border: 1px solid #2b435a;
+}
+
+#setupDialog .orca-auth-link { display: inline-block; margin-top: 8px; color: #7cc7ff; font-size: 11px; }
+
+#setupDialog .orca-model-picker { position: relative; margin-top: 5px; }
+
+#setupDialog .orca-model-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 9px 10px;
+  color: #eef6ff;
+  background: #0b1825;
+  border: 1px solid #2b435a;
+  border-radius: 6px;
+  font: 500 11.5px/1.3 "DejaVu Sans", sans-serif;
+  text-align: left;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+#setupDialog .orca-model-trigger[aria-expanded="true"] { border-color: #7cc7ff; }
+
+#setupDialog .orca-model-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-height: 232px;
+  margin-top: 4px;
+  overflow-y: auto;
+  background: #0a1622;
+  border: 1px solid #7cc7ff;
+  border-radius: 7px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
+  z-index: 40;
+  box-sizing: border-box;
+}
+
+#setupDialog .orca-model-option {
+  display: block;
+  width: 100%;
+  padding: 8px 11px;
+  color: #dcecfa;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #16293b;
+  font: 500 11px/1.35 "DejaVu Sans", sans-serif;
+  text-align: left;
+  cursor: pointer;
+}
+
+#setupDialog .orca-model-option:hover,
+#setupDialog .orca-model-option.active { background: #15314a; }
+
+#setupDialog .orca-model-option small { display: block; color: #8ea4b8; font-size: 9.5px; }
+
+#setupDialog .orca-model-badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 5px;
+  border-radius: 8px;
+  color: #9fe8c9;
+  background: rgba(58, 214, 160, 0.12);
+  font-size: 9px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+#setupDialog .orca-status-error { color: #ff8fa0; }
+#setupDialog .orca-status-ok { color: #7ce0b6; }

@@ -168,7 +168,7 @@ class SetupApp(tk.Tk):
         columns = tk.Frame(card, bg=self.PANEL); columns.pack(fill="both", expand=True, padx=12)
         left = tk.Frame(columns, bg=self.PANEL); right = tk.Frame(columns, bg=self.PANEL)
         left.pack(side="left", fill="both", expand=True, padx=8); right.pack(side="left", fill="both", expand=True, padx=8)
-        for key, label in (("github_token", "GitHub Token"), ("gemini_api_key", "Gemini API Key"), ("brave_api_key", "Brave API Key")):
+        for key, label in (("github_token", "GitHub Token"), ("gemini_api_key", "Gemini API Key"), ("orcarouter_api_key", "OrcaRouter Cyber Inference Key"), ("brave_api_key", "Brave API Key")):
             self._field(left, key, label, secret=True)
         for key, label in (("breachdirectory_api_key", "BreachDirectory API Key"), ("hudsonrock_api_key", "Hudson Rock API Key"), ("opensanctions_api_key", "OpenSanctions API Key")):
             self._field(right, key, label, secret=True)
@@ -234,7 +234,7 @@ class SetupApp(tk.Tk):
     def _update_review(self) -> None:
         configured = [label for key, label in (
             ("microsoft_email", "Microsoft identity"), ("telegram_api_id", "Telegram API"),
-            ("github_token", "GitHub"), ("gemini_api_key", "Gemini"), ("brave_api_key", "Brave"),
+            ("github_token", "GitHub"), ("gemini_api_key", "Gemini"), ("orcarouter_api_key", "OrcaRouter Cyber Inference"), ("brave_api_key", "Brave"),
             ("breachdirectory_api_key", "BreachDirectory"), ("hudsonrock_api_key", "Hudson Rock"),
             ("opensanctions_api_key", "OpenSanctions"),
         ) if self.fields[key].get().strip()]

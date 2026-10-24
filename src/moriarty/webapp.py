@@ -20,7 +20,20 @@ from uuid import uuid4
 
 from .services.phone_audit import DEFAULT_PHONE_AUDIT_SOURCES
 from .services.username_audit import DEFAULT_USERNAME_SOURCES
-from .providers.gemini_case_analysis import GeminiCaseAnalysis
+from .providers.ai_factory import build_case_analysis, selected_provider
+from .providers.orcarouter import (
+    DEFAULT_MODEL,
+    ApiKeyCredentialAdapter,
+    MappingVault,
+    OrcaConnectManager,
+    OrcaRouterError,
+    PROVIDER_ID,
+    clear_credential,
+    discover_models,
+    mark_reauthentication_required,
+    provider_registry,
+    resolve_credential,
+)
 from .providers.search_backend import SearchBackendError
 
 
@@ -54,7 +67,11 @@ def username_source_catalog() -> list[dict[str, Any]]:
     return [{"id": item.name, "label": item.name.replace("_", " ").title(), "category": item.category, "description": item.description, "requirements": requirements.get(item.name, [])} for item in DEFAULT_USERNAME_SOURCES]
 
 
-SECRET_KEYS = {"telegram_api_hash", "gemini_api_key", "brave_api_key", "github_token", "hudsonrock_api_key", "opensanctions_api_key", "breachdirectory_api_key", "microsoft_email", "microsoft_password"}
+SECRET_KEYS = {"telegram_api_hash", "gemini_api_key", "orcarouter_api_key", "brave_api_key", "github_token", "hudsonrock_api_key", "opensanctions_api_key", "breachdirectory_api_key", "microsoft_email", "microsoft_password"}
+ORCAROUTER_STATE_KEYS = {
+    "ai_provider", "orcarouter_model", "orcarouter_scope", "orcarouter_account_id",
+    "orcarouter_credential_source", "orcarouter_needs_reauth", "orcarouter_credential_generation",
+}
 
 
 @dataclass
@@ -78,6 +95,15 @@ class ConfigurationStore:
         public = {key: item for key, item in value.items() if key not in SECRET_KEYS}
         public["configured"] = {key: bool(value.get(key)) for key in SECRET_KEYS}
         public["ready"] = bool(value.get("setup_complete"))
+        public["ai_provider"] = selected_provider(value)
+        public["orcarouter_model"] = str(value.get("orcarouter_model") or DEFAULT_MODEL)
+        public["orcarouter"] = {
+            "provider_id": PROVIDER_ID,
+            "configured": bool(value.get("orcarouter_api_key")),
+            "credential_source": str(value.get("orcarouter_credential_source") or ""),
+            "needs_reauth": bool(value.get("orcarouter_needs_reauth")),
+            "scope": str(value.get("orcarouter_scope") or ""),
+        }
         return public
 
     def effective(self) -> dict[str, Any]:
@@ -85,6 +111,7 @@ class ConfigurationStore:
         environment = {
             "telegram_api_id":"TELEGRAM_API_ID", "telegram_api_hash":"TELEGRAM_API_HASH",
             "telegram_account":"TELEGRAM_ACCOUNT", "gemini_api_key":"GEMINI_API_KEY",
+            "orcarouter_api_key":"ORCAROUTER_API_KEY",
             "brave_api_key":"BRAVE_SEARCH_API_KEY", "github_token":"GITHUB_TOKEN",
             "hudsonrock_api_key":"HUDSONROCK_API_KEY", "opensanctions_api_key":"OPENSANCTIONS_API_KEY",
             "breachdirectory_api_key":"BREACHDIRECTORY_API_KEY",
@@ -95,14 +122,53 @@ class ConfigurationStore:
                 value[key] = os.environ[name]
         return value
 
+    def patch(self, values: Mapping[str, Any], *, remove: bool = False) -> dict[str, Any]:
+        """Update a few keys without touching setup state.
+
+        Credential adapters persist through this path, so a key written by the
+        PKCE flow and a key typed into the settings form land in the same
+        trusted 0600 configuration file.
+        """
+
+        current = self.load()
+        for key, value in values.items():
+            if remove:
+                current.pop(key, None)
+            else:
+                current[key] = value
+        temporary = self.path.with_suffix(".tmp")
+        temporary.write_text(json.dumps(current, ensure_ascii=False, indent=2), encoding="utf-8")
+        temporary.replace(self.path)
+        try:
+            self.path.chmod(0o600)
+        except OSError:
+            pass
+        return current
+
     def save(self, payload: Mapping[str, Any]) -> dict[str, Any]:
         current = self.load()
-        allowed = SECRET_KEYS | {"telegram_api_id", "telegram_account", "telegram_session_path", "truecaller_profile_dir", "syncme_profile_dir", "language", "setup_complete"}
+        if payload.get("clear_orcarouter"):
+            for key in ("orcarouter_api_key", "orcarouter_scope", "orcarouter_account_id", "orcarouter_credential_source", "orcarouter_needs_reauth"):
+                current.pop(key, None)
+            current["orcarouter_credential_generation"] = int(current.get("orcarouter_credential_generation") or 0) + 1
+        allowed = SECRET_KEYS | ORCAROUTER_STATE_KEYS | {"telegram_api_id", "telegram_account", "telegram_session_path", "truecaller_profile_dir", "syncme_profile_dir", "language", "setup_complete"}
         for key in allowed:
             if key not in payload:
                 continue
             value = payload[key]
             if key in SECRET_KEYS and value in {"", None, "********"}:
+                continue
+            if key == "orcarouter_api_key":
+                stored = str(value).strip()
+                if not stored.startswith("sk-orca-"):
+                    raise ValueError("OrcaRouter API keys start with sk-orca-.")
+                if stored != current.get("orcarouter_api_key"):
+                    current["orcarouter_credential_generation"] = int(current.get("orcarouter_credential_generation") or 0) + 1
+                    current["orcarouter_credential_source"] = "api_key"
+                    current["orcarouter_needs_reauth"] = False
+                    current["orcarouter_scope"] = "api"
+                    current.pop("orcarouter_account_id", None)
+                current[key] = stored
                 continue
             current[key] = value
         current["setup_complete"] = True
@@ -114,6 +180,22 @@ class ConfigurationStore:
         except OSError:
             pass
         return self.public()
+
+
+class ConfigurationVault:
+    """CredentialVault adapter over the project's existing 0600 config file."""
+
+    def __init__(self, store: ConfigurationStore) -> None:
+        self._store = store
+
+    def get(self, name: str) -> Any:
+        return self._store.load().get(name)
+
+    def set(self, name: str, value: Any) -> None:
+        self._store.patch({name: value})
+
+    def delete(self, name: str) -> None:
+        self._store.patch({name: None}, remove=True)
 
 
 def run_phone_audit(payload: Mapping[str, Any], configuration: Mapping[str, Any]) -> dict[str, Any]:
@@ -426,6 +508,8 @@ def serve_workspace(host: str = "127.0.0.1", port: int = 8765, data_dir: str | P
     store_path = Path(data_dir or Path.home() / ".local/share/moriarty-v5/gokboru") / "investigations.json"
     store = InvestigationStore(store_path)
     configuration = ConfigurationStore(store_path.with_name("configuration.json"))
+    credential_vault = ConfigurationVault(configuration)
+    connectors = OrcaConnectManager(credential_vault)
 
     class Handler(BaseHTTPRequestHandler):
         server_version = "GokboruIntelligence/0.1"
@@ -443,6 +527,33 @@ def serve_workspace(host: str = "127.0.0.1", port: int = 8765, data_dir: str | P
                 return self._json({"sources": username_source_catalog()})
             if path == "/api/config":
                 return self._json(configuration.public())
+            if path == "/api/ai/providers":
+                return self._json({"providers": provider_registry(), "default_provider": selected_provider(configuration.effective())})
+            if path == "/api/ai/models":
+                query = parse_qs(parsed.query)
+                provider = query.get("provider", ["orcarouter"])[0]
+                capability = query.get("capability", ["chat"])[0]
+                modality = query.get("modality", [None])[0]
+                if provider != PROVIDER_ID:
+                    return self._json({"error": "Unsupported provider."}, HTTPStatus.BAD_REQUEST)
+                if capability not in {"chat", "multimodal", "embedding", "image", "video", "rerank"}:
+                    return self._json({"error": "Unsupported capability."}, HTTPStatus.BAD_REQUEST)
+                if capability == "multimodal" and modality not in {"image", "audio", "video"}:
+                    return self._json({"error": "A multimodal modality is required."}, HTTPStatus.BAD_REQUEST)
+                effective = configuration.effective()
+                credential = resolve_credential(MappingVault(effective))
+                result = discover_models(
+                    credential.key if credential else None,
+                    capability=capability,
+                    modality=modality,
+                    timeout=8.0,
+                )
+                payload = result.to_dict()
+                payload.update({"provider": PROVIDER_ID, "capability": capability, "credential_source": credential.source if credential else None})
+                return self._json(payload)
+            if path == "/api/ai/connect/status":
+                attempt_id = parse_qs(parsed.query).get("attempt_id", [""])[0]
+                return self._json(connectors.status(attempt_id))
             if path == "/api/media":
                 requested = parse_qs(parsed.query).get("path", [""])[0]
                 allowed: set[str] = set()
@@ -530,6 +641,22 @@ def serve_workspace(host: str = "127.0.0.1", port: int = 8765, data_dir: str | P
                     return self._json(store.add_audit(investigation["id"], result), HTTPStatus.CREATED)
                 if path == "/api/config":
                     return self._json(configuration.save(payload), HTTPStatus.OK)
+                if path == "/api/ai/connect/start":
+                    return self._json(connectors.start(), HTTPStatus.OK)
+                if path == "/api/ai/connect/cancel":
+                    attempt_id = str(payload.get("attempt_id") or "")
+                    return self._json({"cancelled": connectors.cancel(attempt_id)}, HTTPStatus.OK)
+                if path == "/api/ai/credentials":
+                    method = str(payload.get("method") or "api_key")
+                    if method == "clear":
+                        clear_credential(credential_vault)
+                        return self._json(configuration.public(), HTTPStatus.OK)
+                    if method != "api_key":
+                        raise ValueError("Unsupported credential method.")
+                    credential = ApiKeyCredentialAdapter().save(credential_vault, str(payload.get("api_key") or ""))
+                    result = configuration.public()
+                    result["credential_source"] = credential.source
+                    return self._json(result, HTTPStatus.OK)
                 if path.endswith("/audits") and path.startswith("/api/investigations/"):
                     investigation_id = unquote(path.split("/")[-2])
                     return self._json(store.add_audit(investigation_id, payload), HTTPStatus.CREATED)
@@ -538,8 +665,16 @@ def serve_workspace(host: str = "127.0.0.1", port: int = 8765, data_dir: str | P
                     investigation = store.get(investigation_id)
                     if investigation is None:
                         raise KeyError(investigation_id)
-                    analyzer = GeminiCaseAnalysis(api_key=configuration.effective().get("gemini_api_key"))
-                    analysis = analyzer.analyze(investigation, language="tr" if payload.get("language") == "tr" else "en")
+                    effective = configuration.effective()
+                    analyzer = build_case_analysis(effective)
+                    try:
+                        analysis = analyzer.analyze(investigation, language="tr" if payload.get("language") == "tr" else "en")
+                    except Exception as exc:
+                        credential = resolve_credential(MappingVault(effective))
+                        if credential is not None and "rejected the credential" in str(exc):
+                            if mark_reauthentication_required(MappingVault(effective), credential):
+                                configuration.patch({"orcarouter_needs_reauth": True})
+                        raise
                     return self._json(store.set_analysis(investigation_id, analysis), HTTPStatus.OK)
                 self._json({"error": "Bilinmeyen uç nokta."}, HTTPStatus.NOT_FOUND)
             except KeyError:
@@ -549,6 +684,8 @@ def serve_workspace(host: str = "127.0.0.1", port: int = 8765, data_dir: str | P
             except subprocess.TimeoutExpired:
                 self._json({"error": "Araştırma zaman sınırını aştı. Daha az kaynak seçerek yeniden deneyin."}, HTTPStatus.REQUEST_TIMEOUT)
             except SearchBackendError as exc:
+                self._json({"error": str(exc)}, HTTPStatus.BAD_GATEWAY)
+            except OrcaRouterError as exc:
                 self._json({"error": str(exc)}, HTTPStatus.BAD_GATEWAY)
 
         def do_DELETE(self) -> None:
